@@ -5,7 +5,8 @@
   --quanternary-color: #48a0e7;
   --quinary-color: #4700b3;
   --primary-color-transparent: hsla(210, 11%, 15%, 0.5);
-  --delete-button-color: #f03e3e;
+  --delete-button-color: #e03131;
+  --book-color: #343a40;
 }
 
 * {
@@ -74,13 +75,19 @@ body {
 .book-container {
   height: 200px;
   width: 350px;
-  background-color: var(--primary-color);
+  background-color: var(--book-color);
   border: 2px solid var(--secondary-color);
   border-radius: 10px;
   box-shadow: 0 1px 20px var(--quanternary-color);
   display: grid;
   grid-template-rows: 75% 25%;
   grid-template-columns: 75% 25%;
+  transition: transform 0.3s;
+}
+
+.book-container:hover {
+  transform: scale(1.1);
+  box-shadow: 0 1px 40px var(--quanternary-color);
 }
 
 .book-container-inner {
@@ -142,16 +149,28 @@ body {
   background-color: var(--secondary-color);
 }
 
+.btn-edit:active {
+  color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  background-color: var(--quinary-color);
+}
+
 .btn-delete:hover {
   color: var(--delete-button-color);
   border-color: var(--delete-button-color);
   background-color: var(--secondary-color);
 }
 
+.btn-delete:active {
+  color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  background-color: var(--delete-button-color);
+}
+
 .edit::before {
   content: "\f303";
   font-weight: 900;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -160,7 +179,7 @@ body {
 .delete::before {
   content: "\f2ed";
   font-weight: 900;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   display: flex;
   justify-content: center;
   align-items: center;
