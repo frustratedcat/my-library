@@ -119,6 +119,10 @@ body {
   font-weight: 500;
 }
 
+.book-content:hover {
+  color: var(--quanternary-color);
+}
+
 .book-title {
   font-size: 1.4rem;
   font-weight: 700;
