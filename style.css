@@ -38,13 +38,22 @@ body {
   margin-bottom: 60px;
 }
 
-.header-h1 {
+.header-a:link {
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 2rem;
   font-weight: 700;
   color: var(--primary-color);
+  text-decoration: none;
+}
+
+.header-a:hover {
+  color: var(--quanternary-color);
+}
+
+.header-a:active {
+  color: var(--quinary-color);
 }
 
 .icon::before {
