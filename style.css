@@ -81,7 +81,7 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: max-content;
-  gap: 40px;
+  gap: 50px;
   margin-bottom: 90px;
 }
 
@@ -129,10 +129,6 @@ body {
   color: var(--secondary-color);
   font-size: 1.1rem;
   font-weight: 500;
-}
-
-.book-content:hover {
-  color: var(--quanternary-color);
 }
 
 .book-title {
@@ -235,4 +231,23 @@ footer {
 
 .footer-a:active {
   color: var(--quinary-color);
+}
+
+@media (max-width: 1200px) {
+  .main-container {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 80px;
+  }
+}
+
+@media (max-width: 850px) {
+  .main-container {
+    column-gap: 50px;
+  }
+}
+
+@media (max-width: 790px) {
+  .main-container {
+    grid-template-columns: 1fr;
+  }
 }
