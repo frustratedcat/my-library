@@ -79,16 +79,6 @@ body {
   content: "\f055";
 }
 
-.github-btn:hover,
-.add-item-btn:hover {
-  color: var(--quanternary-color);
-}
-
-.github-btn:active,
-.add-item-btn:active {
-  color: var(--quinary-color);
-}
-
 .header-a:link {
   display: flex;
   justify-content: center;
@@ -99,11 +89,15 @@ body {
   text-decoration: none;
 }
 
-.header-a:hover {
+.header-a:hover,
+.github-btn:hover,
+.add-item-btn:hover {
   color: var(--quanternary-color);
 }
 
-.header-a:active {
+.header-a:active,
+.github-btn:active,
+.add-item-btn:active {
   color: var(--quinary-color);
 }
 
