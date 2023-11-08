@@ -291,7 +291,7 @@ footer {
 }
 
 @media (max-width: 500px) {
-  .github-btn {
+  .github-btn:link {
     margin-left: 20px;
   }
   .add-item-btn {
@@ -300,7 +300,7 @@ footer {
 }
 
 @media (max-width: 400px) {
-  .github-btn {
+  .github-btn:link {
     margin-left: 5px;
   }
   .add-item-btn {
