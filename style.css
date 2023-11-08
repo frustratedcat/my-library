@@ -344,7 +344,7 @@ body {
 .reading-status {
   width: 80px;
   height: 36px;
-  margin: 10px 0 30px 0;
+  margin: 0 0 30px 0;
   font-family: inherit;
   font-size: 1rem;
   font-weight: 500;
@@ -355,7 +355,44 @@ body {
 }
 
 .reading-status:nth-child(2) {
-  margin: 10px auto 30px auto;
+  margin: 0 auto 30px auto;
+}
+
+.reading-status:hover {
+  background-color: var(--secondary-color);
+  color: var(--quanternary-color);
+  border-color: var(--quanternary-color);
+}
+
+.submit-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.submit-btn {
+  width: 100px;
+  height: 50px;
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border: 2px solid var(--secondary-color);
+  border-radius: 10px;
+  background-color: var(--quinary-color);
+  color: var(--secondary-color);
+}
+
+.submit-btn:hover {
+  background-color: var(--secondary-color);
+  color: var(--quinary-color);
+  border-color: var(--quinary-color);
+}
+
+.reading-status:active,
+.submit-btn:active {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border-color: var(--secondary-color);
 }
 
 footer {
