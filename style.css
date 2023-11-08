@@ -56,7 +56,7 @@ body {
   align-items: center;
 }
 
-.github-btn {
+.github-btn:link {
   margin-right: auto;
   margin-left: 40px;
   text-decoration: none;
@@ -77,6 +77,16 @@ body {
 
 .add-item-icon::before {
   content: "\f055";
+}
+
+.github-btn:hover,
+.add-item-btn:hover {
+  color: var(--quanternary-color);
+}
+
+.github-btn:active,
+.add-item-btn:active {
+  color: var(--quinary-color);
 }
 
 .header-a:link {
