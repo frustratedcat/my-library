@@ -22,6 +22,13 @@ body {
   font-size: 16px;
 }
 
+.icon::before {
+  font-family: "Font Awesome 6 Free";
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
 .body-container {
   margin: 0 auto;
   max-width: 1300px;
@@ -31,11 +38,45 @@ body {
 }
 
 .header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   background-color: var(--secondary-color);
   box-shadow: 0 1px 30px var(--quanternary-color);
   padding: 15px;
   margin-bottom: 60px;
+}
+
+.header-btn {
+  font-weight: 900;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.github-btn {
+  margin-right: auto;
+  margin-left: 40px;
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+.github-icon::before {
+  content: "\f09b";
+  font-family: "Font Awesome 6 Brands";
+}
+
+.add-item-btn {
+  margin-left: auto;
+  margin-right: 40px;
+  background-color: transparent;
+  border: none;
+}
+
+.add-item-icon::before {
+  content: "\f055";
 }
 
 .header-a:link {
@@ -54,13 +95,6 @@ body {
 
 .header-a:active {
   color: var(--quinary-color);
-}
-
-.icon::before {
-  font-family: "Font Awesome 6 Free";
-  display: inline-block;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
 }
 
 .cat-paw::before {
@@ -249,5 +283,23 @@ footer {
 @media (max-width: 790px) {
   .main-container {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .github-btn {
+    margin-left: 20px;
+  }
+  .add-item-btn {
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .github-btn {
+    margin-left: 5px;
+  }
+  .add-item-btn {
+    margin-right: 5px;
   }
 }
