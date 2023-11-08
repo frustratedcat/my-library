@@ -91,10 +91,12 @@
             frustrated<span class="icon cat-paw"></span>cat
           </h1>
           <fieldset class="fieldset">
-            <legend class="legend">Add A Book</legend>
+            <legend class="legend">
+              New Book <span class="icon book-icon"></span>
+            </legend>
 
             <div class="form-item">
-              <label for="author" class="label">Author: </label>
+              <label for="author" class="label">Author:</label>
               <input
                 type="text"
                 id="author"
@@ -105,7 +107,7 @@
             </div>
 
             <div class="form-item">
-              <label for="title" class="label">Title: </label>
+              <label for="title" class="label">Title:</label>
               <input
                 type="text"
                 id="title"
@@ -116,27 +118,25 @@
             </div>
 
             <div class="form-item">
-              <label for="pages" class="label">Pages: </label>
+              <label for="pages" class="label">Pages:</label>
               <input
                 type="number"
                 id="pages"
                 name="pages"
+                min="0"
                 required
                 class="input"
               />
             </div>
 
-            <div class="form-item">
-              <label for="reading-status" class="label">Reading Status: </label>
-              <input
-                type="text"
-                id="reading-status"
-                name="reading-status"
-                required
-                class="input"
-              />
+            <div class="form-btn">
+              <button class="reading-status">Read</button>
+              <button class="reading-status">Not Read</button>
+              <button class="reading-status">Reading</button>
             </div>
           </fieldset>
+
+          <button type="submit">Add Book</button>
         </form>
       </div>
     </div>
