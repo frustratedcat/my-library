@@ -288,7 +288,7 @@ body {
   margin-top: 5px;
   background-color: transparent;
   border: none;
-  color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 .exit-icon::before {
@@ -301,11 +301,11 @@ body {
 }
 
 .exit-form-btn:hover {
-  color: var(--secondary-color);
+  color: var(--delete-button-color);
 }
 
 .exit-form-btn:active {
-  color: var(--delete-button-color);
+  color: var(--primary-color);
 }
 
 .form-h1 {
