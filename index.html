@@ -90,9 +90,11 @@
           <button class="exit-form-btn exit-modal">
             <span class="icon exit-icon"></span>
           </button>
+
           <h1 class="form-h1">
             frustrated<span class="icon cat-paw"></span>cat
           </h1>
+
           <fieldset class="fieldset">
             <legend class="legend">
               New Book <span class="icon book-icon"></span>
@@ -105,7 +107,7 @@
                 id="author"
                 name="author"
                 required
-                class="input"
+                class="input add-author"
               />
             </div>
 
@@ -116,7 +118,7 @@
                 id="title"
                 name="title"
                 required
-                class="input"
+                class="input add-title"
               />
             </div>
 
@@ -128,19 +130,34 @@
                 name="pages"
                 min="0"
                 required
-                class="input"
+                class="input add-pages"
               />
             </div>
 
             <div class="form-btn">
-              <button type="button" class="reading-status">Read</button>
-              <button type="button" class="reading-status">Not Read</button>
-              <button type="button" class="reading-status">Reading</button>
+              <button
+                type="button"
+                class="reading-status-btn-style reading-status status-read"
+              >
+                Read
+              </button>
+              <button
+                type="button"
+                class="reading-status-btn-style reading-status status-not-read"
+              >
+                Not Read
+              </button>
+              <button
+                type="button"
+                class="reading-status-btn-style reading-status status-reading"
+              >
+                Reading
+              </button>
             </div>
           </fieldset>
 
           <div class="submit-btn-container">
-            <button type="submit" class="submit-btn">Add Book</button>
+            <button type="submit" class="submit-btn submit">Add Book</button>
           </div>
         </form>
       </div>
