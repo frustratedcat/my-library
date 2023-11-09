@@ -23,33 +23,15 @@ function addBookToLibrary() {}
 
 const addItem = function () {
   addItemBtn.addEventListener("click", () => {
-    console.log("Open Add Item Modal");
     addItemModal.classList.remove("hide-modal");
-
-    statusRead.classList.add("reading-status");
-    statusRead.classList.remove("selected-btn");
-
-    statusNotRead.classList.add("reading-status");
-    statusNotRead.classList.remove("selected-btn");
-
-    statusReading.classList.add("reading-status");
-    statusReading.classList.remove("selected-btn");
+    addRemoveStatusBtnActive();
   });
 };
 
 const exitModal = function () {
   exitModalBtn.addEventListener("click", () => {
-    console.log("Close Modal");
     addItemModal.classList.add("hide-modal");
-
-    statusRead.classList.add("reading-status");
-    statusRead.classList.remove("selected-btn");
-
-    statusNotRead.classList.add("reading-status");
-    statusNotRead.classList.remove("selected-btn");
-
-    statusReading.classList.add("reading-status");
-    statusReading.classList.remove("selected-btn");
+    addRemoveStatusBtnActive();
   });
 };
 
@@ -59,34 +41,43 @@ const readingStatus = function () {
       if (e.target.matches(".status-read")) {
         statusRead.classList.remove("reading-status");
         statusRead.classList.add("selected-btn");
-
-        statusNotRead.classList.add("reading-status");
-        statusNotRead.classList.remove("selected-btn");
-
-        statusReading.classList.add("reading-status");
-        statusReading.classList.remove("selected-btn");
+        addRemoveStatusNotReadBtnActive();
+        addRemoveStatusReadingBtnActive();
       } else if (e.target.matches(".status-not-read")) {
         statusNotRead.classList.remove("reading-status");
         statusNotRead.classList.add("selected-btn");
-
-        statusRead.classList.add("reading-status");
-        statusRead.classList.remove("selected-btn");
-
-        statusReading.classList.add("reading-status");
-        statusReading.classList.remove("selected-btn");
+        addRemoveStatusReadBtnActive();
+        addRemoveStatusReadingBtnActive();
       } else if (e.target.matches(".status-reading")) {
         statusReading.classList.remove("reading-status");
         statusReading.classList.add("selected-btn");
-
-        statusRead.classList.add("reading-status");
-        statusRead.classList.remove("selected-btn");
-
-        statusNotRead.classList.add("reading-status");
-        statusNotRead.classList.remove("selected-btn");
+        addRemoveStatusReadBtnActive();
+        addRemoveStatusNotReadBtnActive();
       }
     });
   }
 };
+
+function addRemoveStatusReadBtnActive() {
+  statusRead.classList.add("reading-status");
+  statusRead.classList.remove("selected-btn");
+}
+
+function addRemoveStatusNotReadBtnActive() {
+  statusNotRead.classList.add("reading-status");
+  statusNotRead.classList.remove("selected-btn");
+}
+
+function addRemoveStatusReadingBtnActive() {
+  statusReading.classList.add("reading-status");
+  statusReading.classList.remove("selected-btn");
+}
+
+function addRemoveStatusBtnActive() {
+  addRemoveStatusReadBtnActive();
+  addRemoveStatusNotReadBtnActive();
+  addRemoveStatusReadingBtnActive();
+}
 
 const run = function () {
   addItem();
