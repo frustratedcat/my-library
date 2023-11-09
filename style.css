@@ -406,6 +406,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .submit-btn {
@@ -437,6 +438,28 @@ body {
   background-color: var(--quinary-color);
   color: var(--secondary-color);
   border-color: var(--secondary-color);
+}
+
+.status-error-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: inherit;
+  font-size: 0.8rem;
+  height: 55px;
+  width: 183px;
+  position: absolute;
+  z-index: 3;
+  bottom: 25px;
+  margin-right: auto;
+  background-color: rgb(19, 19, 43);
+  color: var(--secondary-color);
+  border: 1px solid var(--quanternary-color);
+  border-radius: 10px;
+}
+
+.hide-status-error-message {
+  display: none;
 }
 
 footer {

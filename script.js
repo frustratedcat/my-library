@@ -12,6 +12,7 @@ let readingStatusBtns = document.querySelectorAll(".reading-status");
 const statusRead = document.querySelector(".status-read");
 const statusNotRead = document.querySelector(".status-not-read");
 const statusReading = document.querySelector(".status-reading");
+const statusErrorMessage = document.querySelector(".status-error-message");
 
 const submit = document.querySelector(".submit");
 
@@ -61,16 +62,19 @@ const readingStatus = function () {
 function addRemoveStatusReadBtnActive() {
   statusRead.classList.add("reading-status");
   statusRead.classList.remove("selected-btn");
+  statusErrorMessage.classList.add("hide-status-error-message");
 }
 
 function addRemoveStatusNotReadBtnActive() {
   statusNotRead.classList.add("reading-status");
   statusNotRead.classList.remove("selected-btn");
+  statusErrorMessage.classList.add("hide-status-error-message");
 }
 
 function addRemoveStatusReadingBtnActive() {
   statusReading.classList.add("reading-status");
   statusReading.classList.remove("selected-btn");
+  statusErrorMessage.classList.add("hide-status-error-message");
 }
 
 function addRemoveStatusBtnActive() {
@@ -79,10 +83,24 @@ function addRemoveStatusBtnActive() {
   addRemoveStatusReadingBtnActive();
 }
 
+const submitForm = function () {
+  submit.addEventListener("click", (e) => {
+    if (
+      statusRead.classList.contains("selected-btn") === false &&
+      statusNotRead.classList.contains("selected-btn") === false &&
+      statusReading.classList.contains("selected-btn") === false
+    ) {
+      e.preventDefault();
+      statusErrorMessage.classList.remove("hide-status-error-message");
+    }
+  });
+};
+
 const run = function () {
   addItem();
   exitModal();
   readingStatus();
+  submitForm();
 };
 
 run();
