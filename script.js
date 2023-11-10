@@ -16,6 +16,11 @@ const statusErrorMessage = document.querySelector(".status-error-message");
 
 const submit = document.querySelector(".submit");
 
+const bookTitleInput = document.querySelector(".book-title-input");
+const bookAuthorInput = document.querySelector(".book-author-input");
+const bookPagesInput = document.querySelector(".book-pages-input");
+const bookStatusInput = document.querySelector(".book-status-input");
+
 const myLibrary = [];
 let readingStatusSelected;
 
@@ -101,7 +106,7 @@ const submitForm = function () {
       statusErrorMessage.classList.remove("hide-status-error-message");
     } else {
       addBookToLibrary();
-      console.log(myLibrary);
+      addLibraryToPage();
     }
   });
 };
@@ -114,6 +119,28 @@ function addBookToLibrary() {
     readingStatusSelected
   );
   myLibrary.push(addBook);
+}
+
+function addLibraryToPage() {
+  for (let i = 0; i < myLibrary.length; i++) {
+    console.log(myLibrary.length);
+    console.log(myLibrary);
+    for (const [key, value] of Object.entries(myLibrary[i])) {
+      console.log(key, value);
+      if (key === "title") {
+        bookTitleInput.textContent = value;
+      }
+      if (key === "author") {
+        bookAuthorInput.textContent = value;
+      }
+      if (key === "pages") {
+        bookPagesInput.textContent = value;
+      }
+      if (key === "readingStatus") {
+        bookStatusInput.textContent = value;
+      }
+    }
+  }
 }
 
 const run = function () {
