@@ -17,10 +17,14 @@ const statusErrorMessage = document.querySelector(".status-error-message");
 const submit = document.querySelector(".submit");
 
 const myLibrary = [];
+let readingStatusSelected;
 
-function Book() {}
-
-function addBookToLibrary() {}
+function Book(author, title, pages, readingStatus) {
+  this.author = author;
+  this.title = title;
+  this.pages = pages;
+  this.readingStatus = readingStatus;
+}
 
 const addItem = function () {
   addItemBtn.addEventListener("click", () => {
@@ -40,16 +44,19 @@ const readingStatus = function () {
   for (let i = 0; i < readingStatusBtns.length; i++) {
     readingStatusBtns[i].addEventListener("click", (e) => {
       if (e.target.matches(".status-read")) {
+        readingStatusSelected = statusRead.value;
         statusRead.classList.remove("reading-status");
         statusRead.classList.add("selected-btn");
         addRemoveStatusNotReadBtnActive();
         addRemoveStatusReadingBtnActive();
       } else if (e.target.matches(".status-not-read")) {
+        readingStatusSelected = statusNotRead.value;
         statusNotRead.classList.remove("reading-status");
         statusNotRead.classList.add("selected-btn");
         addRemoveStatusReadBtnActive();
         addRemoveStatusReadingBtnActive();
       } else if (e.target.matches(".status-reading")) {
+        readingStatusSelected = statusReading.value;
         statusReading.classList.remove("reading-status");
         statusReading.classList.add("selected-btn");
         addRemoveStatusReadBtnActive();
@@ -92,9 +99,22 @@ const submitForm = function () {
     ) {
       e.preventDefault();
       statusErrorMessage.classList.remove("hide-status-error-message");
+    } else {
+      addBookToLibrary();
+      console.log(myLibrary);
     }
   });
 };
+
+function addBookToLibrary() {
+  const addBook = new Book(
+    addAuthor.value,
+    addTitle.value,
+    addPages.value,
+    readingStatusSelected
+  );
+  myLibrary.push(addBook);
+}
 
 const run = function () {
   addItem();
