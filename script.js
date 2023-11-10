@@ -21,6 +21,8 @@ const bookAuthorInput = document.querySelector(".book-author-input");
 const bookPagesInput = document.querySelector(".book-pages-input");
 const bookStatusInput = document.querySelector(".book-status-input");
 
+const formAddBook = document.querySelector(".form");
+
 const myLibrary = [];
 let readingStatusSelected;
 
@@ -143,11 +145,18 @@ function addLibraryToPage() {
   }
 }
 
+function preventPageReload() {
+  formAddBook.addEventListener("submit", (e) => {
+    e.preventDefault();
+  });
+}
+
 const run = function () {
   addItem();
   exitModal();
   readingStatus();
   submitForm();
+  preventPageReload();
 };
 
 run();
