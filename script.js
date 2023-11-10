@@ -44,6 +44,7 @@ const exitModal = function () {
   exitModalBtn.addEventListener("click", () => {
     addItemModal.classList.add("hide-modal");
     addRemoveStatusBtnActive();
+    clearFormAddItems();
   });
 };
 
@@ -109,6 +110,8 @@ const submitForm = function () {
     } else {
       addBookToLibrary();
       addLibraryToPage();
+      addItemModal.classList.add("hide-modal");
+      clearFormAddItems();
     }
   });
 };
@@ -149,6 +152,14 @@ function preventPageReload() {
   formAddBook.addEventListener("submit", (e) => {
     e.preventDefault();
   });
+}
+
+function clearFormAddItems() {
+  if (addItemModal.classList.contains("hide-modal")) {
+    addTitle.value = "";
+    addAuthor.value = "";
+    addPages.value = 0;
+  }
 }
 
 const run = function () {
