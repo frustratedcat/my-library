@@ -16,14 +16,34 @@ const statusErrorMessage = document.querySelector(".status-error-message");
 
 const submit = document.querySelector(".submit");
 
-const bookTitleInput = document.querySelector(".book-title-input");
-const bookAuthorInput = document.querySelector(".book-author-input");
-const bookPagesInput = document.querySelector(".book-pages-input");
-const bookStatusInput = document.querySelector(".book-status-input");
-
 const formAddBook = document.querySelector(".form");
 
 const mainContainer = document.querySelector(".main-container");
+
+const createBookContainerDiv = document.createElement("div");
+const createBookContainerInnerDiv = document.createElement("div");
+const createOverflowContainerDiv = document.createElement("div");
+
+const createBookTitleMarginDiv = document.createElement("div");
+const createBookAuthorMarginDiv = document.createElement("div");
+const createBookPagesMarginDiv = document.createElement("div");
+
+const createBookTitleH2 = document.createElement("h2");
+const createBookAuthorP = document.createElement("p");
+const createBookAuthorTextSpan = document.createElement("span");
+const createBookAuthorSpan = document.createElement("span");
+
+const createBookPagesP = document.createElement("p");
+const createBookPagesSpan = document.createElement("span");
+const createBookPagesTextSpan = document.createElement("span");
+
+const createBookBtnContainer = document.createElement("div");
+const createBookEditBtn = document.createElement("button");
+const createBookEditBtnSpan = document.createElement("span");
+const createBookDeleteBtn = document.createElement("button");
+const createBookDeleteBtnSpan = document.createElement("span");
+
+const createBookStatusP = document.createElement("p");
 
 const myLibrary = [];
 let readingStatusSelected;
@@ -112,9 +132,9 @@ const submitForm = function () {
     } else {
       addBookToLibrary();
       addItemModal.classList.add("hide-modal");
-      clearFormAddItems();
       addElementsToPage();
       addLibraryToPage();
+      clearFormAddItems();
     }
   });
 };
@@ -130,10 +150,15 @@ function addBookToLibrary() {
 }
 
 function addLibraryToPage() {
+  const bookTitleInput = document.querySelector(".book-title-input");
+  const bookAuthorInput = document.querySelector(".book-author-input");
+  const bookPagesInput = document.querySelector(".book-pages-input");
+  const bookStatusInput = document.querySelector(".book-status-input");
   for (let i = 0; i < myLibrary.length; i++) {
     console.log(`loop number: ${i + 1}`);
     console.log(`myLibrary length: ${myLibrary.length}`);
     console.log(myLibrary);
+
     for (const [key, value] of Object.entries(myLibrary[i])) {
       if (key === "title") {
         bookTitleInput.textContent = value;
@@ -166,11 +191,90 @@ function clearFormAddItems() {
 }
 
 function addElementsToPage() {
+  console.log(
+    `Total count in Main Container: ${mainContainer.childElementCount}`
+  );
+  console.log(`Total count in myLibrary: ${myLibrary.length}`);
   if (mainContainer.childElementCount < myLibrary.length) {
-    const node = mainContainer.firstElementChild;
-    const clone = node.cloneNode(true);
-    mainContainer.appendChild(clone);
+    console.log("creating new elements");
+    if (mainContainer.childElementCount === 0) {
+      //title
+      mainContainer
+        .appendChild(createBookContainerDiv)
+        .appendChild(createBookContainerInnerDiv)
+        .appendChild(createOverflowContainerDiv)
+        .appendChild(createBookTitleMarginDiv)
+        .appendChild(createBookTitleH2);
+      //author
+      createOverflowContainerDiv
+        .appendChild(createBookAuthorMarginDiv)
+        .appendChild(createBookAuthorP)
+        .appendChild(createBookAuthorTextSpan);
+      createBookAuthorP.appendChild(createBookAuthorSpan);
+      //pages
+      createOverflowContainerDiv
+        .appendChild(createBookPagesMarginDiv)
+        .appendChild(createBookPagesP)
+        .appendChild(createBookPagesSpan);
+      createBookPagesP.appendChild(createBookPagesTextSpan);
+      //btn
+      createBookContainerDiv
+        .appendChild(createBookBtnContainer)
+        .appendChild(createBookEditBtn)
+        .appendChild(createBookEditBtnSpan);
+      createBookBtnContainer
+        .appendChild(createBookDeleteBtn)
+        .appendChild(createBookDeleteBtnSpan);
+      createBookContainerDiv.appendChild(createBookStatusP);
+      addClassesToCreatedElements();
+    } else {
+      //this will probably end up in its own function or I can do an if statement to check if an element is already there and if so I can clone it and if not I'll use the below to create it.
+      console.log(mainContainer.firstElementChild);
+      const node = mainContainer.firstElementChild;
+      const clone = node.cloneNode(true);
+      mainContainer.appendChild(clone);
+    }
   }
+  console.log(
+    `Total count in Main Container after loop: ${mainContainer.childElementCount}`
+  );
+}
+
+function addClassesToCreatedElements() {
+  createBookContainerDiv.classList.add("book-container");
+  createBookContainerInnerDiv.classList.add("book-container-inner");
+  createOverflowContainerDiv.classList.add("overflow-container");
+
+  createBookTitleMarginDiv.classList.add("book-item-margin");
+  createBookAuthorMarginDiv.classList.add("book-item-margin");
+  createBookPagesMarginDiv.classList.add("book-item-margin");
+
+  createBookTitleH2.classList.add(
+    "book-title",
+    "book-content",
+    "book-title-input"
+  );
+  createBookAuthorP.classList.add("book-author", "book-content");
+  createBookAuthorTextSpan.textContent = "by ";
+  createBookAuthorSpan.classList.add("book-author-input");
+  createBookPagesP.classList.add("book-pages", "book-content");
+  createBookPagesSpan.classList.add("book-pages-input");
+  createBookPagesTextSpan.textContent = " pages";
+
+  createBookBtnContainer.classList.add("btn-container");
+  createBookEditBtn.classList.add("btn", "btn-edit", "btn-style");
+  createBookEditBtn.setAttribute("type", "button");
+  createBookEditBtnSpan.classList.add("edit", "icon");
+
+  createBookDeleteBtn.classList.add("btn", "btn-delete", "btn-style");
+  createBookDeleteBtn.setAttribute("type", "button");
+  createBookDeleteBtnSpan.classList.add("delete", "icon");
+
+  createBookStatusP.classList.add(
+    "book-status",
+    "book-content",
+    "book-status-input"
+  );
 }
 
 const run = function () {
