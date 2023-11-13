@@ -22,29 +22,8 @@ const bookPagesInput = document.querySelector(".book-pages-input");
 const bookStatusInput = document.querySelector(".book-status-input");
 
 const formAddBook = document.querySelector(".form");
+
 const mainContainer = document.querySelector(".main-container");
-
-const createBookContainerDiv = document.createElement("div");
-const createBookContainerInnerDiv = document.createElement("div");
-const createOverflowContainerDiv = document.createElement("div");
-
-const createBookTitleMarginDiv = document.createElement("div");
-const createBookAuthorMarginDiv = document.createElement("div");
-const createBookPagesMarginDiv = document.createElement("div");
-
-const createBookTitleH2 = document.createElement("h2");
-const createBookAuthorP = document.createElement("p");
-const createBookAuthorSpan = document.createElement("span");
-const createBookPagesP = document.createElement("p");
-const createBookPagesSpan = document.createElement("span");
-
-const createBookBtnContainer = document.createElement("div");
-const createBookEditBtn = document.createElement("button");
-const createBookEditBtnSpan = document.createElement("span");
-const createBookDeleteBtn = document.createElement("button");
-const createBookDeleteBtnSpan = document.createElement("span");
-
-const createBookStatusP = document.createElement("p");
 
 const myLibrary = [];
 let readingStatusSelected;
@@ -132,11 +111,10 @@ const submitForm = function () {
       statusErrorMessage.classList.remove("hide-status-error-message");
     } else {
       addBookToLibrary();
-      addLibraryToPage();
       addItemModal.classList.add("hide-modal");
       clearFormAddItems();
-
       addElementsToPage();
+      addLibraryToPage();
     }
   });
 };
@@ -153,10 +131,10 @@ function addBookToLibrary() {
 
 function addLibraryToPage() {
   for (let i = 0; i < myLibrary.length; i++) {
-    console.log(myLibrary.length);
+    console.log(`loop number: ${i + 1}`);
+    console.log(`myLibrary length: ${myLibrary.length}`);
     console.log(myLibrary);
     for (const [key, value] of Object.entries(myLibrary[i])) {
-      console.log(key, value);
       if (key === "title") {
         bookTitleInput.textContent = value;
       }
@@ -188,76 +166,11 @@ function clearFormAddItems() {
 }
 
 function addElementsToPage() {
-  console.log(
-    `Total count in Main Container: ${mainContainer.childElementCount}`
-  );
   if (mainContainer.childElementCount < myLibrary.length) {
-    console.log("creating new elements");
-    mainContainer
-      .appendChild(createBookContainerDiv)
-      .appendChild(createBookContainerInnerDiv)
-      .appendChild(createOverflowContainerDiv)
-      .appendChild(createBookTitleMarginDiv)
-      .appendChild(createBookTitleH2);
-
-    createOverflowContainerDiv
-      .appendChild(createBookAuthorMarginDiv)
-      .appendChild(createBookAuthorP)
-      .appendChild(createBookAuthorSpan);
-
-    createOverflowContainerDiv
-      .appendChild(createBookPagesMarginDiv)
-      .appendChild(createBookPagesP)
-      .appendChild(createBookPagesSpan);
-
-    createBookContainerDiv
-      .appendChild(createBookBtnContainer)
-      .appendChild(createBookEditBtn)
-      .appendChild(createBookEditBtnSpan);
-
-    createBookBtnContainer
-      .appendChild(createBookDeleteBtn)
-      .appendChild(createBookDeleteBtnSpan);
-
-    createBookContainerDiv.appendChild(createBookStatusP);
-
-    addClassesToCreatedElements();
+    const node = mainContainer.firstElementChild;
+    const clone = node.cloneNode(true);
+    mainContainer.appendChild(clone);
   }
-}
-
-function addClassesToCreatedElements() {
-  createBookContainerDiv.classList.add("book-container");
-  createBookContainerInnerDiv.classList.add("book-container-inner");
-  createOverflowContainerDiv.classList.add("overflow-container");
-
-  createBookTitleMarginDiv.classList.add("book-item-margin");
-  createBookAuthorMarginDiv.classList.add("book-item-margin");
-  createBookPagesMarginDiv.classList.add("book-item-margin");
-
-  createBookTitleH2.classList.add(
-    "book-title",
-    "book-content",
-    "book-title-input"
-  );
-  createBookAuthorP.classList.add("book-author", "book-content");
-  createBookAuthorSpan.classList.add("book-author-input");
-  createBookPagesP.classList.add("book-pages", "book-content");
-  createBookPagesSpan.classList.add("book-pages-input");
-
-  createBookBtnContainer.classList.add("btn-container");
-  createBookEditBtn.classList.add("btn", "btn-edit", "btn-style");
-  createBookEditBtn.setAttribute("type", "button");
-  createBookEditBtnSpan.classList.add("edit", "icon");
-
-  createBookDeleteBtn.classList.add("btn", "btn-delete", "btn-style");
-  createBookDeleteBtn.setAttribute("type", "button");
-  createBookDeleteBtnSpan.classList.add("delete", "icon");
-
-  createBookStatusP.classList.add(
-    "book-status",
-    "book-content",
-    "book-status-input"
-  );
 }
 
 const run = function () {
