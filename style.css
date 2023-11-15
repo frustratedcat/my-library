@@ -270,7 +270,7 @@ body {
 .form {
   margin: auto;
   width: 380px;
-  height: 500px;
+  height: 510px;
   background-color: var(--primary-color);
   color: var(--secondary-color);
   border: 2px solid var(--secondary-color);
@@ -285,7 +285,7 @@ body {
   right: 0;
   z-index: 2;
   margin-right: 10px;
-  margin-top: 5px;
+  margin-top: 10px;
   background-color: transparent;
   border: none;
   color: var(--secondary-color);
@@ -369,39 +369,6 @@ body {
   color: var(--primary-color);
 }
 
-.form-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.reading-status-btn-style {
-  width: 80px;
-  height: 36px;
-  margin: 0 0 30px 0;
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: 500;
-  border: 2px solid;
-  border-radius: 10px;
-}
-
-.reading-status {
-  background-color: var(--quanternary-color);
-  color: var(--secondary-color);
-  border-color: var(--secondary-color);
-}
-
-.reading-status-btn-style:nth-child(2) {
-  margin: 0 auto 30px auto;
-}
-
-.reading-status:hover {
-  background-color: var(--secondary-color);
-  color: var(--quanternary-color);
-  border-color: var(--quanternary-color);
-}
-
 .submit-btn-container {
   display: flex;
   justify-content: center;
@@ -410,6 +377,7 @@ body {
 }
 
 .submit-btn {
+  margin: auto;
   width: 100px;
   height: 50px;
   font-family: inherit;
@@ -440,7 +408,7 @@ body {
   border-color: var(--secondary-color);
 }
 
-.status-error-message {
+.error-message {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -458,7 +426,7 @@ body {
   border-radius: 10px;
 }
 
-.hide-status-error-message {
+.hide-error-message {
   display: none;
 }
 

@@ -50,41 +50,7 @@
     </header>
 
     <div class="body-container">
-      <main class="main-container">
-        <div class="book-container">
-          <div class="book-container-inner">
-            <div class="overflow-container">
-              <div class="book-item-margin">
-                <h2 class="book-title book-content book-title-input"></h2>
-              </div>
-
-              <div class="book-item-margin">
-                <p class="book-author book-content">
-                  <span>by </span><span class="book-author-input"></span>
-                </p>
-              </div>
-
-              <div class="book-item-margin">
-                <p class="book-pages book-content">
-                  <span class="book-pages-input"></span><span> pages</span>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="btn-container">
-            <button type="button" class="btn btn-edit btn-style">
-              <span class="edit icon"></span>
-            </button>
-
-            <button type="button" class="btn btn-delete btn-style">
-              <span class="delete icon"></span>
-            </button>
-          </div>
-
-          <p class="book-status book-content book-status-input"></p>
-        </div>
-      </main>
+      <main class="main-container"></main>
     </div>
 
     <div class="add-item-modal hide-modal">
@@ -100,19 +66,9 @@
 
           <fieldset class="fieldset">
             <legend class="legend">
-              New Book <span class="icon book-icon"></span>
+              <span class="new-edit-book"></span> Book
+              <span class="icon book-icon"></span>
             </legend>
-
-            <div class="form-item">
-              <label for="author" class="label">Author:</label>
-              <input
-                type="text"
-                id="author"
-                name="author"
-                required
-                class="input add-author"
-              />
-            </div>
 
             <div class="form-item">
               <label for="title" class="label">Title:</label>
@@ -122,6 +78,17 @@
                 name="title"
                 required
                 class="input add-title"
+              />
+            </div>
+
+            <div class="form-item">
+              <label for="author" class="label">Author:</label>
+              <input
+                type="text"
+                id="author"
+                name="author"
+                required
+                class="input add-author"
               />
             </div>
 
@@ -137,30 +104,20 @@
               />
             </div>
 
-            <div class="form-btn">
-              <button
-                type="button"
-                class="reading-status-btn-style reading-status status-read"
-                value="Read"
+            <div class="form-item">
+              <label for="reading-status" class="label">Reading Status:</label>
+              <select
+                name="reading-status"
+                id="reading-status"
+                required
+                class="input add-status"
               >
-                Read
-              </button>
-              <button
-                type="button"
-                class="reading-status-btn-style reading-status status-not-read"
-                value="Not Read"
-              >
-                Not Read
-              </button>
-              <button
-                type="button"
-                class="reading-status-btn-style reading-status status-reading"
-                value="Reading"
-              >
-                Reading
-              </button>
+                <option value="Read" selected>Read</option>
+                <option value="Not Read">Not Read</option>
+                <option value="Reading">Reading</option>
+              </select>
 
-              <div class="status-error-message hide-status-error-message">
+              <div class="error-message hide-error-message">
                 Please Choose a Status
               </div>
             </div>
