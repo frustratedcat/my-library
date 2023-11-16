@@ -7,11 +7,13 @@ const addAuthor = document.querySelector(".add-author");
 const addTitle = document.querySelector(".add-title");
 const addPages = document.querySelector(".add-pages");
 const addStatus = document.getElementById("reading-status");
+const addEditBook = document.querySelector(".add-edit-book");
 
 const addItem = function () {
   addItemBtn.addEventListener("click", () => {
     console.log("opening modal");
     addItemModal.classList.remove("hide-modal");
+    addEditBook.textContent = "Add";
   });
 };
 
@@ -128,6 +130,8 @@ function submitForm() {
       }
     }
   });
+
+  // Edit book
 
   i++;
 }

@@ -337,13 +337,16 @@ body {
   margin-bottom: 10px;
 }
 
+.modal-legend-spacing {
+  margin: 0 6px;
+}
+
 .book-icon::before {
   content: "\f518";
   font-size: 1.2rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 6px;
 }
 
 .form-item {
