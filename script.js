@@ -29,11 +29,12 @@ const exitModal = function () {
 // Define empty library array and create constructor function
 const myLibrary = [];
 
-function Book(author, title, pages, readingStatus) {
+function Book(author, title, pages, readingStatus, innerIndex) {
   this.author = author;
   this.title = title;
   this.pages = pages;
   this.readingStatus = readingStatus;
+  this.innerIndex = innerIndex;
 }
 
 // Create selectors for relevant form elements to add to library array and create function to construct new object and add to library
@@ -42,7 +43,8 @@ function addBookToLibrary() {
     addAuthor.value,
     addTitle.value,
     addPages.value,
-    addStatus.value
+    addStatus.value,
+    i
   );
   myLibrary.push(addBook);
 }
@@ -57,54 +59,48 @@ function clearFormAddItems() {
   }
 }
 
-// Prevent page from reloading when form is submitted
-const formAddBook = document.querySelector(".form");
-function preventPageReload() {
-  formAddBook.addEventListener("submit", (e) => {
-    console.log("Prevent page from reloading");
-    e.preventDefault();
-  });
-}
-
 // Create html elements to put on page and add book to html when modal is submitted
 const mainContainer = document.querySelector(".main-container");
 const statusBtnSelected = document.querySelector(".btn-selected");
+let i = 0;
 
+// Add elements to page and items to array
 function submitForm() {
   console.log("Submit button as been clicked");
   let html = `<div class="book-container">
-                <div class="book-container-inner">
-                  <div class="overflow-container">
-                    <div class="book-item-margin">
-                      <h2 class="book-title book-content book-title-input">${addTitle.value}</h2>
-                    </div>
-                  
-                    <div class="book-item-margin">
-                      <p class="book-author book-content">
-                        by <span class="book-author-input">${addAuthor.value}</span>
-                      </p>
-                    </div>
-                  
-                    <div class="book-item-margin">
-                      <p class="book-pages book-content">
-                        <span class="book-pages-input">${addPages.value}</span> pages
-                      </p>
+                  <div class="book-container-inner">
+                    <div class="overflow-container">
+                      <div class="book-item-margin">
+                        <h2 class="book-title book-content book-title-input">${addTitle.value}</h2>
+                      </div>
+                    
+                      <div class="book-item-margin">
+                        <p class="book-author book-content">
+                          by <span class="book-author-input">${addAuthor.value}</span>
+                        </p>
+                      </div>
+                    
+                      <div class="book-item-margin">
+                        <p class="book-pages book-content">
+                          <span class="book-pages-input">${addPages.value}</span> pages
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
+                    
+                  <div class="btn-container">
+                    <button type="button" class="btn btn-edit btn-style">
+                      <span class="edit icon"></span>
+                    </button>
                   
-                <div class="btn-container">
-                  <button type="button" class="btn btn-edit btn-style">
-                    <span class="edit icon"></span>
-                  </button>
-                
-                  <button type="button" class="btn btn-delete btn-style">
-                    <span class="delete icon"></span>
-                  </button>
-                </div>
-                
-                <p class="book-status book-content book-status-input">${addStatus.value}</p>
-              </div>`;
+                    <button type="button" class="btn btn-delete btn-style" id=remove-item-${i}>
+                      <span class="delete icon"></span>
+                    </button>
+                  </div>
+                  
+                  <p class="book-status book-content book-status-input">${addStatus.value}</p>
+                </div>`;
+
   mainContainer.insertAdjacentHTML("beforeend", html);
 
   addBookToLibrary();
@@ -113,12 +109,32 @@ function submitForm() {
   console.log("closing modal");
   addItemModal.classList.add("hide-modal");
   clearFormAddItems();
+
+  // Remove elements from page and item from array
+  let removeItemBtn = document.getElementById("remove-item-" + i);
+  removeItemBtn.addEventListener("click", () => {
+    let removeItem = removeItemBtn.parentNode.parentNode;
+    mainContainer.removeChild(removeItem);
+
+    for (let i = 0; i < myLibrary.length; i++) {
+      for (const [key, value] of Object.entries(myLibrary[i])) {
+        if (
+          key === "innerIndex" &&
+          value.toString() === removeItemBtn.id.slice(12)
+        ) {
+          myLibrary.splice(myLibrary[i], 1);
+          console.log(myLibrary);
+        }
+      }
+    }
+  });
+
+  i++;
 }
 
 function clickSubmit() {
   const submit = document.querySelector(".submit");
   submit.addEventListener("click", submitForm);
-  preventPageReload();
 }
 
 const runLibrary = function () {
