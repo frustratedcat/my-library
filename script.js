@@ -11,7 +11,6 @@ const addEditBook = document.querySelector(".add-edit-book");
 
 const addItem = function () {
   addItemBtn.addEventListener("click", () => {
-    console.log("opening modal");
     addItemModal.classList.remove("hide-modal");
     addEditBook.textContent = "Add";
   });
@@ -22,7 +21,6 @@ const exitModalBtn = document.querySelector(".exit-modal");
 
 const exitModal = function () {
   exitModalBtn.addEventListener("click", () => {
-    console.log("closing modal");
     addItemModal.classList.add("hide-modal");
     clearFormAddItems();
   });
@@ -64,17 +62,19 @@ function clearFormAddItems() {
 // Submit items
 function clickSubmit() {
   submit.addEventListener("click", () => {
+    addTitle.value = addTitle.value.trim();
+    addAuthor.value = addAuthor.value.trim();
+    addPages.value = addPages.value.trim();
+
     if (
-      //THIS TRIM METHOD DOESN'T SEEM TO WORK SO I NEED TO FIGURE THAT OUT
-      addTitle.value.trim() === "" ||
-      addTitle.value.trim() === null ||
-      addAuthor.value.trim() === "" ||
-      addAuthor.value.trim() === null ||
-      addPages.value.trim() === "" ||
-      addPages.value.trim() === null ||
-      addPages.value.trim() < 0
+      addTitle.value === "" ||
+      addTitle.value === null ||
+      addAuthor.value === "" ||
+      addAuthor.value === null ||
+      addPages.value === "" ||
+      addPages.value === null ||
+      addPages.value < 0
     ) {
-      console.log("problems");
     } else {
       submitForm();
     }
@@ -188,6 +188,10 @@ function submitForm() {
       "click",
       () => {
         // update element content to updated modal inputs
+        addTitle.value = addTitle.value.trim();
+        addAuthor.value = addAuthor.value.trim();
+        addPages.value = addPages.value.trim();
+
         bookTitleInput.textContent = addTitle.value;
         bookAuthorInput.textContent = addAuthor.value;
         bookPagesInput.textContent = addPages.value;
