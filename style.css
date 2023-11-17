@@ -379,7 +379,8 @@ body {
   position: relative;
 }
 
-.submit-btn {
+.submit-btn,
+.submit-edit-btn {
   margin: auto;
   width: 100px;
   height: 50px;
@@ -392,17 +393,23 @@ body {
   color: var(--secondary-color);
 }
 
-.submit-btn:hover {
+.submit-btn:hover,
+.submit-edit-btn:hover {
   background-color: var(--secondary-color);
   color: var(--quinary-color);
   border-color: var(--quinary-color);
 }
 
 .reading-status:active,
-.submit-btn:active {
+.submit-btn:active,
+.submit-edit-btn:active {
   background-color: var(--primary-color);
   color: var(--secondary-color);
   border-color: var(--secondary-color);
+}
+
+.hide-submit-btn {
+  display: none;
 }
 
 .selected-btn {

@@ -62,6 +62,8 @@ function clearFormAddItems() {
 }
 
 // Create html elements to put on page and add book to html when modal is submitted
+const submit = document.querySelector(".submit");
+const submitBtnContainer = document.querySelector(".submit-btn-container");
 const mainContainer = document.querySelector(".main-container");
 const statusBtnSelected = document.querySelector(".btn-selected");
 let i = 0;
@@ -70,38 +72,38 @@ let i = 0;
 function submitForm() {
   console.log("Submit button as been clicked");
   let html = `<div class="book-container">
-                  <div class="book-container-inner">
-                    <div class="overflow-container">
-                      <div class="book-item-margin">
-                        <h2 class="book-title book-content book-title-input">${addTitle.value}</h2>
+                      <div class="book-container-inner">
+                        <div class="overflow-container">
+                          <div class="book-item-margin">
+                            <h2 class="book-title book-content book-title-input" id="book-title-id-${i}">${addTitle.value}</h2>
+                          </div>
+                        
+                          <div class="book-item-margin">
+                            <p class="book-author book-content">
+                              by <span class="book-author-input" id="book-author-id-${i}">${addAuthor.value}</span>
+                            </p>
+                          </div>
+                        
+                          <div class="book-item-margin">
+                            <p class="book-pages book-content">
+                              <span class="book-pages-input" id="book-pages-id-${i}">${addPages.value}</span> pages
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                    
-                      <div class="book-item-margin">
-                        <p class="book-author book-content">
-                          by <span class="book-author-input">${addAuthor.value}</span>
-                        </p>
+                        
+                      <div class="btn-container">
+                        <button type="button" class="btn btn-edit btn-style" id="edit-item-${i}">
+                          <span class="edit icon"></span>
+                        </button>
+                      
+                        <button type="button" class="btn btn-delete btn-style" id="remove-item-${i}">
+                          <span class="delete icon"></span>
+                        </button>
                       </div>
-                    
-                      <div class="book-item-margin">
-                        <p class="book-pages book-content">
-                          <span class="book-pages-input">${addPages.value}</span> pages
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                    
-                  <div class="btn-container">
-                    <button type="button" class="btn btn-edit btn-style">
-                      <span class="edit icon"></span>
-                    </button>
-                  
-                    <button type="button" class="btn btn-delete btn-style" id=remove-item-${i}>
-                      <span class="delete icon"></span>
-                    </button>
-                  </div>
-                  
-                  <p class="book-status book-content book-status-input">${addStatus.value}</p>
-                </div>`;
+                      
+                      <p class="book-status book-content book-status-input" id="book-status-id-${i}">${addStatus.value}</p>
+                    </div>`;
 
   mainContainer.insertAdjacentHTML("beforeend", html);
 
@@ -114,6 +116,7 @@ function submitForm() {
 
   // Remove elements from page and item from array
   let removeItemBtn = document.getElementById("remove-item-" + i);
+  console.log(removeItemBtn);
   removeItemBtn.addEventListener("click", () => {
     let removeItem = removeItemBtn.parentNode.parentNode;
     mainContainer.removeChild(removeItem);
@@ -132,12 +135,65 @@ function submitForm() {
   });
 
   // Edit book
+  // get id of edit btn
+  let editItemBtn = document.getElementById("edit-item-" + i);
+  console.log(editItemBtn);
 
+  // get ids of input items
+  let bookTitleInput = document.getElementById("book-title-id-" + i);
+  let bookAuthorInput = document.getElementById("book-author-id-" + i);
+  let bookPagesInput = document.getElementById("book-pages-id-" + i);
+  let bookStatusInput = document.getElementById("book-status-id-" + i);
+  console.log(bookTitleInput.textContent);
+  console.log(bookAuthorInput.textContent);
+  console.log(bookPagesInput.textContent);
+  console.log(bookStatusInput.textContent);
+
+  editItemBtn.addEventListener("click", () => {
+    //open modal and hide submit button and unhide edit submit button
+    console.log("opening modal");
+    addItemModal.classList.remove("hide-modal");
+    submit.classList.add("hide-submit-btn");
+    addEditBook.textContent = "Edit";
+    const clickEditBtn = document.querySelector(".submit-edit-btn");
+    clickEditBtn.classList.remove("hide-submit-btn");
+
+    // set modal inputs to existing inputs on selected item
+    addTitle.value = bookTitleInput.textContent;
+    addAuthor.value = bookAuthorInput.textContent;
+    addPages.value = bookPagesInput.textContent;
+    addStatus.value = bookStatusInput.textContent;
+
+    clickEditBtn.addEventListener(
+      "click",
+      (e) => {
+        e.preventDefault();
+
+        // update element content to updated modal inputs
+        bookTitleInput.textContent = addTitle.value;
+        bookAuthorInput.textContent = addAuthor.value;
+        bookPagesInput.textContent = addPages.value;
+        bookStatusInput.textContent = addStatus.value;
+
+        // Close modal, unhide submit button, hide edit submit button
+        console.log("closing modal");
+        addItemModal.classList.add("hide-modal");
+        clearFormAddItems();
+        submit.classList.remove("hide-submit-btn");
+        clickEditBtn.classList.add("hide-submit-btn");
+      },
+      // Runs once
+      { once: true }
+    );
+  });
+
+  console.log(i);
   i++;
+  console.log(i);
 }
 
+// Submit items
 function clickSubmit() {
-  const submit = document.querySelector(".submit");
   submit.addEventListener("click", submitForm);
 }
 
