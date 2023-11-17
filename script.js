@@ -61,6 +61,26 @@ function clearFormAddItems() {
   }
 }
 
+// Submit items
+function clickSubmit() {
+  submit.addEventListener("click", () => {
+    if (
+      //THIS TRIM METHOD DOESN'T SEEM TO WORK SO I NEED TO FIGURE THAT OUT
+      addTitle.value.trim() === "" ||
+      addTitle.value.trim() === null ||
+      addAuthor.value.trim() === "" ||
+      addAuthor.value.trim() === null ||
+      addPages.value.trim() === "" ||
+      addPages.value.trim() === null ||
+      addPages.value.trim() < 0
+    ) {
+      console.log("problems");
+    } else {
+      submitForm();
+    }
+  });
+}
+
 // Create html elements to put on page and add book to html when modal is submitted
 const submit = document.querySelector(".submit");
 const submitBtnContainer = document.querySelector(".submit-btn-container");
@@ -166,9 +186,7 @@ function submitForm() {
 
     clickEditBtn.addEventListener(
       "click",
-      (e) => {
-        e.preventDefault();
-
+      () => {
         // update element content to updated modal inputs
         bookTitleInput.textContent = addTitle.value;
         bookAuthorInput.textContent = addAuthor.value;
@@ -195,10 +213,10 @@ function submitForm() {
         console.log("closing modal");
         addItemModal.classList.add("hide-modal");
         clearFormAddItems();
-        submit.classList.remove("hide-submit-btn");
         clickEditBtn.classList.add("hide-submit-btn");
+        submit.classList.remove("hide-submit-btn");
       },
-      // Runs once
+      // Runs once and then unbinds until button is clicked again
       { once: true }
     );
   });
@@ -206,11 +224,6 @@ function submitForm() {
   console.log(i);
   i++;
   console.log(i);
-}
-
-// Submit items
-function clickSubmit() {
-  submit.addEventListener("click", submitForm);
 }
 
 const runLibrary = function () {
