@@ -90,7 +90,6 @@ let i = 0;
 
 // Add elements to page and items to array
 function submitForm() {
-  console.log("Submit button as been clicked");
   let html = `<div class="book-container">
                       <div class="book-container-inner">
                         <div class="overflow-container">
@@ -126,17 +125,13 @@ function submitForm() {
                     </div>`;
 
   mainContainer.insertAdjacentHTML("beforeend", html);
-
   addBookToLibrary();
-  console.log(myLibrary);
-
-  console.log("closing modal");
   addItemModal.classList.add("hide-modal");
   clearFormAddItems();
 
   // Remove elements from page and item from array
   let removeItemBtn = document.getElementById("remove-item-" + i);
-  console.log(removeItemBtn);
+
   removeItemBtn.addEventListener("click", () => {
     let removeItem = removeItemBtn.parentNode.parentNode;
     mainContainer.removeChild(removeItem);
@@ -148,7 +143,6 @@ function submitForm() {
           value.toString() === removeItemBtn.id.slice(12)
         ) {
           myLibrary.splice(myLibrary[i], 1);
-          console.log(myLibrary);
         }
       }
     }
@@ -157,21 +151,15 @@ function submitForm() {
   // Edit book
   // get id of edit btn
   let editItemBtn = document.getElementById("edit-item-" + i);
-  console.log(editItemBtn);
 
   // get ids of input items
   let bookTitleInput = document.getElementById("book-title-id-" + i);
   let bookAuthorInput = document.getElementById("book-author-id-" + i);
   let bookPagesInput = document.getElementById("book-pages-id-" + i);
   let bookStatusInput = document.getElementById("book-status-id-" + i);
-  console.log(bookTitleInput.textContent);
-  console.log(bookAuthorInput.textContent);
-  console.log(bookPagesInput.textContent);
-  console.log(bookStatusInput.textContent);
 
   editItemBtn.addEventListener("click", () => {
     //open modal and hide submit button and unhide edit submit button
-    console.log("opening modal");
     addItemModal.classList.remove("hide-modal");
     submit.classList.add("hide-submit-btn");
     addEditBook.textContent = "Edit";
@@ -208,13 +196,11 @@ function submitForm() {
               myLibrary[i].author = addAuthor.value;
               myLibrary[i].pages = addPages.value;
               myLibrary[i].readingStatus = addStatus.value;
-              console.log(myLibrary);
             }
           }
         }
 
         // Close modal, unhide submit button, hide edit submit button
-        console.log("closing modal");
         addItemModal.classList.add("hide-modal");
         clearFormAddItems();
         clickEditBtn.classList.add("hide-submit-btn");
@@ -225,9 +211,7 @@ function submitForm() {
     );
   });
 
-  console.log(i);
   i++;
-  console.log(i);
 }
 
 const runLibrary = function () {
