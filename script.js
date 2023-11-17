@@ -175,6 +175,22 @@ function submitForm() {
         bookPagesInput.textContent = addPages.value;
         bookStatusInput.textContent = addStatus.value;
 
+        // Update array to updated modal inputs
+        for (let i = 0; i < myLibrary.length; i++) {
+          for (const [key, value] of Object.entries(myLibrary[i])) {
+            if (
+              key === "innerIndex" &&
+              value.toString() === editItemBtn.id.slice(10)
+            ) {
+              myLibrary[i].title = addTitle.value;
+              myLibrary[i].author = addAuthor.value;
+              myLibrary[i].pages = addPages.value;
+              myLibrary[i].readingStatus = addStatus.value;
+              console.log(myLibrary);
+            }
+          }
+        }
+
         // Close modal, unhide submit button, hide edit submit button
         console.log("closing modal");
         addItemModal.classList.add("hide-modal");
