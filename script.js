@@ -18,11 +18,14 @@ const addItem = function () {
 
 // Create selector for closing modal and hiding it, and clearing all form items within when closed
 const exitModalBtn = document.querySelector(".exit-modal");
+const clickEditBtn = document.querySelector(".submit-edit-btn");
 
 const exitModal = function () {
   exitModalBtn.addEventListener("click", () => {
     addItemModal.classList.add("hide-modal");
     clearFormAddItems();
+    clickEditBtn.classList.add("hide-submit-btn");
+    submit.classList.remove("hide-submit-btn");
   });
 };
 
@@ -163,7 +166,6 @@ function submitForm() {
     addItemModal.classList.remove("hide-modal");
     submit.classList.add("hide-submit-btn");
     addEditBook.textContent = "Edit";
-    const clickEditBtn = document.querySelector(".submit-edit-btn");
     clickEditBtn.classList.remove("hide-submit-btn");
 
     // set modal inputs to existing inputs on selected item
