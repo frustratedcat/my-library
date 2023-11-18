@@ -163,6 +163,8 @@ body {
   height: 100%;
   width: 100%;
   overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--quanternary-color);
 }
 
 .book-item-margin {
