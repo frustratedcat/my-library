@@ -308,6 +308,10 @@ body {
   color: var(--primary-color);
 }
 
+.hide-exit-btn {
+  display: none;
+}
+
 .form-h1 {
   width: 100%;
   background-color: var(--quanternary-color);

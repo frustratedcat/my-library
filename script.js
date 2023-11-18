@@ -8,18 +8,18 @@ const addTitle = document.querySelector(".add-title");
 const addPages = document.querySelector(".add-pages");
 const addStatus = document.getElementById("reading-status");
 const addEditBook = document.querySelector(".add-edit-book");
+const exitModalBtn = document.querySelector(".exit-modal");
+const clickEditBtn = document.querySelector(".submit-edit-btn");
 
 const addItem = function () {
   addItemBtn.addEventListener("click", () => {
     addItemModal.classList.remove("hide-modal");
     addEditBook.textContent = "Add";
+    exitModalBtn.classList.remove("hide-exit-btn");
   });
 };
 
-// Create selector for closing modal and hiding it, and clearing all form items within when closed
-const exitModalBtn = document.querySelector(".exit-modal");
-const clickEditBtn = document.querySelector(".submit-edit-btn");
-
+// Exit modal
 const exitModal = function () {
   exitModalBtn.addEventListener("click", () => {
     addItemModal.classList.add("hide-modal");
@@ -145,7 +145,7 @@ function submitForm() {
           key === "innerIndex" &&
           value.toString() === removeItemBtn.id.slice(12)
         ) {
-          myLibrary.splice(myLibrary[i], 1);
+          myLibrary.splice(i, 1);
         }
       }
     }
@@ -167,6 +167,7 @@ function submitForm() {
     submit.classList.add("hide-submit-btn");
     addEditBook.textContent = "Edit";
     clickEditBtn.classList.remove("hide-submit-btn");
+    exitModalBtn.classList.add("hide-exit-btn");
 
     // set modal inputs to existing inputs on selected item
     addTitle.value = bookTitleInput.textContent;
@@ -182,22 +183,60 @@ function submitForm() {
         addAuthor.value = addAuthor.value.trim();
         addPages.value = addPages.value.trim();
 
-        bookTitleInput.textContent = addTitle.value;
-        bookAuthorInput.textContent = addAuthor.value;
-        bookPagesInput.textContent = addPages.value;
-        bookStatusInput.textContent = addStatus.value;
+        // Delete book if empty inputs exist
+        if (
+          addTitle.value === "" ||
+          addAuthor.value === "" ||
+          addPages.value === ""
+        ) {
+          console.log("removing edited item");
+          let deleteEditItem = editItemBtn.parentNode.parentNode;
+          console.log(deleteEditItem);
+          mainContainer.removeChild(deleteEditItem);
 
-        // Update array to updated modal inputs
-        for (let i = 0; i < myLibrary.length; i++) {
-          for (const [key, value] of Object.entries(myLibrary[i])) {
-            if (
-              key === "innerIndex" &&
-              value.toString() === editItemBtn.id.slice(10)
-            ) {
-              myLibrary[i].title = addTitle.value;
-              myLibrary[i].author = addAuthor.value;
-              myLibrary[i].pages = addPages.value;
-              myLibrary[i].readingStatus = addStatus.value;
+          console.log(myLibrary);
+
+          for (let i = 0; i < myLibrary.length; i++) {
+            console.log(myLibrary.length);
+            console.log(`outer loop number ${i}`);
+
+            for (const [key, value] of Object.entries(myLibrary[i])) {
+              console.log(key, value);
+
+              if (
+                key === "innerIndex" &&
+                value.toString() === editItemBtn.id.slice(10)
+              ) {
+                console.log(`${key}: ${value} - ${editItemBtn.id.slice(10)}`);
+                let indexToDelete = value;
+                console.log(indexToDelete);
+
+                let deletedItemThing = myLibrary[i];
+                console.log(deletedItemThing);
+                console.log(i);
+                myLibrary.splice(i, 1);
+              }
+            }
+          }
+          console.log(myLibrary);
+        } else {
+          bookTitleInput.textContent = addTitle.value;
+          bookAuthorInput.textContent = addAuthor.value;
+          bookPagesInput.textContent = addPages.value;
+          bookStatusInput.textContent = addStatus.value;
+
+          // Update array to updated modal inputs
+          for (let i = 0; i < myLibrary.length; i++) {
+            for (const [key, value] of Object.entries(myLibrary[i])) {
+              if (
+                key === "innerIndex" &&
+                value.toString() === editItemBtn.id.slice(10)
+              ) {
+                myLibrary[i].title = addTitle.value;
+                myLibrary[i].author = addAuthor.value;
+                myLibrary[i].pages = addPages.value;
+                myLibrary[i].readingStatus = addStatus.value;
+              }
             }
           }
         }
