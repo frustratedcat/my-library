@@ -442,6 +442,26 @@ footer {
   color: var(--quinary-color);
 }
 
+@media (min-width: 1700px) {
+  .main-container {
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 80px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .main-container {
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 60px;
+  }
+}
+
+@media (min-width: 1350px) {
+  .main-container {
+    column-gap: 80px;
+  }
+}
+
 @media (max-width: 1200px) {
   .main-container {
     grid-template-columns: repeat(2, 1fr);
