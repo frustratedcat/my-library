@@ -118,7 +118,18 @@ body {
   background-image: url(./background-screenshot.png);
   background-size: 1000%;
   background-clip: text;
+  -webkit-background-clip: transparent;
   -webkit-text-fill-color: transparent;
+}
+
+.chrome-cat-paw::before {
+  content: "\f1b0";
+  font-weight: 900;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 6px;
 }
 
 .main-container {

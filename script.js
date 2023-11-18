@@ -1,5 +1,21 @@
 "use strict";
 
+// Fix issue with chromium browser bug
+let catPawIcon = document.querySelectorAll(".cat-paw-chrome");
+const catPawHeader = document.querySelector(".cat-paw-header");
+const catPawForm = document.querySelector(".cat-paw-form");
+const isChrome = !!window.chrome;
+if (isChrome) {
+  console.log("chrome");
+  console.log(catPawIcon.length);
+  for (let i = 0; i < catPawIcon.length; i++) {
+    catPawHeader.classList.add("chrome-cat-paw");
+    catPawHeader.classList.remove("cat-paw");
+    catPawForm.classList.add("chrome-cat-paw");
+    catPawForm.classList.remove("cat-paw");
+  }
+}
+
 // Create selectors for add item button and show modal on page when clicked
 const addItemBtn = document.querySelector(".add-item-btn");
 const addItemModal = document.querySelector(".add-item-modal");
