@@ -3,13 +3,23 @@
 // Create selectors for add item button and show modal on page when clicked
 const addItemBtn = document.querySelector(".add-item-btn");
 const addItemModal = document.querySelector(".add-item-modal");
-const addAuthor = document.querySelector(".add-author");
-const addTitle = document.querySelector(".add-title");
-const addPages = document.querySelector(".add-pages");
+const addTitle = document.getElementById("title");
+const addAuthor = document.getElementById("author");
+const addPages = document.getElementById("pages");
 const addStatus = document.getElementById("reading-status");
 const addEditBook = document.querySelector(".add-edit-book");
 const exitModalBtn = document.querySelector(".exit-modal");
 const clickEditBtn = document.querySelector(".submit-edit-btn");
+
+function noDefaultOnEnter() {
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      if (e.target.nodeName === "INPUT") {
+        e.preventDefault();
+      }
+    }
+  });
+}
 
 const addItem = function () {
   addItemBtn.addEventListener("click", () => {
@@ -259,6 +269,7 @@ const runLibrary = function () {
   addItem();
   exitModal();
   clickSubmit();
+  noDefaultOnEnter();
 };
 
 runLibrary();
