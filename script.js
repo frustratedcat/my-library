@@ -6,8 +6,6 @@ const catPawHeader = document.querySelector(".cat-paw-header");
 const catPawForm = document.querySelector(".cat-paw-form");
 const isChrome = !!window.chrome;
 if (isChrome) {
-  console.log("chrome");
-  console.log(catPawIcon.length);
   for (let i = 0; i < catPawIcon.length; i++) {
     catPawHeader.classList.add("chrome-cat-paw");
     catPawHeader.classList.remove("cat-paw");
@@ -27,6 +25,7 @@ const addEditBook = document.querySelector(".add-edit-book");
 const exitModalBtn = document.querySelector(".exit-modal");
 const clickEditBtn = document.querySelector(".submit-edit-btn");
 
+// Function to disallow 'enter' key within textboxes
 function noDefaultOnEnter() {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
@@ -37,6 +36,7 @@ function noDefaultOnEnter() {
   });
 }
 
+// Open modal to add book
 const addItem = function () {
   addItemBtn.addEventListener("click", () => {
     addItemModal.classList.remove("hide-modal");
@@ -215,36 +215,19 @@ function submitForm() {
           addAuthor.value === "" ||
           addPages.value === ""
         ) {
-          console.log("removing edited item");
           let deleteEditItem = editItemBtn.parentNode.parentNode;
-          console.log(deleteEditItem);
           mainContainer.removeChild(deleteEditItem);
 
-          console.log(myLibrary);
-
           for (let i = 0; i < myLibrary.length; i++) {
-            console.log(myLibrary.length);
-            console.log(`outer loop number ${i}`);
-
             for (const [key, value] of Object.entries(myLibrary[i])) {
-              console.log(key, value);
-
               if (
                 key === "innerIndex" &&
                 value.toString() === editItemBtn.id.slice(10)
               ) {
-                console.log(`${key}: ${value} - ${editItemBtn.id.slice(10)}`);
-                let indexToDelete = value;
-                console.log(indexToDelete);
-
-                let deletedItemThing = myLibrary[i];
-                console.log(deletedItemThing);
-                console.log(i);
                 myLibrary.splice(i, 1);
               }
             }
           }
-          console.log(myLibrary);
         } else {
           bookTitleInput.textContent = addTitle.value;
           bookAuthorInput.textContent = addAuthor.value;
